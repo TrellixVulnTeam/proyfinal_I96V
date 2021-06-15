@@ -1,0 +1,155 @@
+/* Estilos de SCSS */
+// Este comentario queda solo en SASS
+
+//importacion de estilos secundarios
+@import "estructura";
+@import "responsive";
+@import "fuentes";
+@import "grids";
+
+// Variables
+$rojo: red;
+// $rojo: green !default;
+$titulo-fuente: normal 24px/1.5 'Open sans, sans-serif' ; 
+$caja: 500px;
+$ancho: 750px;
+$tipo: gato;
+
+
+/*CONDICIONAL IF*/
+
+p {
+    @if $tipo == caballo {
+        color: black;
+    }
+    @else if ($tipo == perro) {
+        color: brown;
+    }
+    @else if ($tipo == gato) {
+        color: darkcyan;
+    }
+    @else {
+        color: darkgoldenrod;
+    }
+}
+
+/* BUCLES */
+@for $i from 1 through 6 {
+    .item-#{$i} {
+        width: 1em * $i;
+    }
+    h#{$i} {
+        font-size: 2.5em / $i;    
+    }
+}
+
+
+/* EACH (armado de listas) */
+@each $e in puma, delfin, calamar, pulpo /*lista*/ {
+    .#{$e}-icono {
+        /*propiedades: valores; */
+        background-image: url('#{$e}.jpg');
+    }
+}
+
+
+/* MAPS (lista más ordenada) (variable que contiene muchas variables) */
+$mapa: (
+    delfin: #55d,
+    calamar: red,
+    pulpo: #21f,
+    puma: brown,
+    perro: yellow,
+    gato: black,
+);
+
+/*EACH con MAPS (lista más ordenada) (variable que contiene muchas variables)*/
+@each $animales, $color in $mapa {
+    .button--#{$animales} {
+        /*propiedades*/
+        background-color: $color;
+    }
+}
+
+
+
+/*---------------------------*/
+
+
+.caja_uno {
+    background-color: pink;
+    width: $ancho;
+}
+.caja_dos {
+    background-color: rgb(121, 165, 121);
+    width: $ancho/2+100;
+}
+
+
+
+/*BEM - Bloque Elemento Modificador*/
+/*bloque - padre*/
+.promos {
+    font-size: 15px;
+    background-color: grey;
+}
+.contenedor {
+    background-color: rgb(176, 176, 240);
+}
+.lista {
+    font-size: 10px;
+}
+.footer {
+    border: blue dotted 2px;
+}
+
+/*elemento - hijo de bloque*/
+.promos__hijo {
+    font-family: Arial, sans-serif;
+    color: #a72626;
+}
+.contenedor__azul {
+    border: dotted black 1px;
+    display: inline-flex;
+}
+.lista__roja {
+    list-style-type: none;;
+    font-family: Times, serif;
+}
+.footer__copyright {
+    background-color: yellow;
+    color: red;
+}
+
+/*modificadores*/
+.lista__roja--mod1 {
+    border: 1px solid brown;
+}
+.contenedor--modificador {
+    color: deepskyblue;
+}
+.contenedor__azul--modificador2 {
+    background-color: forestgreen;
+}
+.footer__copyright--modificador3 {
+    background-color: fuchsia;
+}
+
+
+//Nesting
+/*Nesting o anidación*/
+
+/*
+ul {
+    list-style-type: none;
+    li {
+        padding: 15px;
+        display: inline-block;
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            color: yellowgreen;
+        }
+    }
+}
+*/
